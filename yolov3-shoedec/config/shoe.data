@@ -1,0 +1,6 @@
+classes= 1
+train=data/shoe/trainvalno5k.txt
+valid=data/shoe/5k.txt
+names=data/shoe.names
+backup=backup/
+eval=shoe

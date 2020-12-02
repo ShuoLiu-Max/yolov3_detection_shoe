@@ -1,0 +1,14 @@
+1:
+anchor的大小是相对与reshape到416之后的图片大小而言的
+because :
+self.scaled_anchors = FloatTensor([(a_w / self.stride, a_h / self.stride) for a_w, a_h in self.anchors])
+
+2:
+x.data预测的结果其实是相对与左上角网格点的横坐标的位置，y同理
+pred_boxes[..., 0] = x.data + self.grid_x
+pred_boxes[..., 1] = y.data + self.grid_y
+
+3.
+预测的为anchor宽度的特殊倍数，其为真实倍数取了loge
+pred_boxes[..., 2] = torch.exp(w.data) * self.anchor_w   #  ???
+pred_boxes[..., 3] = torch.exp(h.data) * self.anchor_h 
